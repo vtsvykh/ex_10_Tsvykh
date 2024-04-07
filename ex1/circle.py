@@ -48,6 +48,6 @@ class Circle:
 
     def __repr__(self):
         """
-        Displaying information about a class object in debugging mode.:
+        Displaying information about a class object in debugging mode.
         """
         return f'{self.radius}: {round(self.area(), 3)}'
