@@ -1,6 +1,6 @@
 class Circle:
     """
-    class of Circle
+    Class of Circle.
 
     Attributes:
         all_circles (list): list of all instances of the class
