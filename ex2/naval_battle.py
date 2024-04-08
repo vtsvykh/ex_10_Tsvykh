@@ -41,6 +41,7 @@ class NavalBattle:
                 else:
                     print(NavalBattle.playing_field[i][j], end=' ')
             print()
+        print('\n')
 
     def __str__(self):
         """
