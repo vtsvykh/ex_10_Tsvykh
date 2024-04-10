@@ -44,10 +44,10 @@ class Circle:
         """
         Displaying information about a class object to users.
         """
-        return f'Экземпляр класса Circle: радиус - {self.radius}, площадь - {self.area()}'
+        return f'{self.radius}'
 
     def __repr__(self):
         """
         Displaying information about a class object in debugging mode.
         """
-        return f'{self.radius}: {round(self.area(), 3)}'
+        return self.__str__()

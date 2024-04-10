@@ -1,12 +1,11 @@
-import circle
+from solution import Circle
 
-
-circle_1 = circle.Circle()
-circle_2 = circle.Circle(2)
-circle_3 = circle.Circle(3.5)
-
-print(circle_1.area())
-print(circle_2.area())
-print(circle_3.area())
-
-print(circle.Circle.total_area())
+c1 = Circle()
+c2 = Circle(7)
+c3 = Circle(5)
+print(c2.area())
+print(c3)
+print(Circle.PI)
+print(Circle.all_circles)
+print(Circle.total_area())
+print(len(c3.__class__.all_circles))
