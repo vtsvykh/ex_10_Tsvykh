@@ -1,24 +1,24 @@
-import naval_battle
+from solution import NavalBattle
 
-
-naval_battle.NavalBattle.playing_field = [
-    [1, 1, 1, 1, 0, 0, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 1, 1, 0, 1, 0, 0, 1, 1, 0],
-    [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 1, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 1, 0, 0, 1, 1, 1, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1]
-]
-
-player_1 = naval_battle.NavalBattle('📍')
-player_2 = naval_battle.NavalBattle('📎')
-
-naval_battle.NavalBattle.show()
-player_1.shot(1, 1)
-naval_battle.NavalBattle.show()
-player_2.shot(4, 2)
-naval_battle.NavalBattle.show()
+NavalBattle.playing_field = [[0, 1, 1, 1, 0, 0, 0, 0, 0, 1],
+                             [0, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+                             [0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+                             [0, 0, 0, 0, 0, 1, 0, 0, 1, 0],
+                             [1, 1, 1, 0, 0, 1, 0, 0, 1, 0],
+                             [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                             [0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+                             [0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+                             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                             [0, 0, 0, 1, 1, 0, 0, 1, 0, 0]]
+player1 = NavalBattle('#')
+player2 = NavalBattle('*')
+NavalBattle.show()
+player1.shot(6, 2)
+player1.shot(6, 1)
+player2.shot(6, 3)
+player2.shot(6, 4)
+player2.shot(6, 5)
+player2.shot(3, 3)
+player2.show()
+player1.shot(1, 1)
+NavalBattle.show()
