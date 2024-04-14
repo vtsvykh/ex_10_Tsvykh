@@ -6,7 +6,7 @@ class NavalBattle:
         playing_field (list): a list of lists denoting a 10х10 playing field
         symbol (str): the symbol that indicates the hit of each player
     """
-    playing_field = [[0] * 10 for _ in range(10)]
+    playing_field = [['~'] * 10 for _ in range(10)]
 
     def __init__(self, symbol):
         """
