@@ -1,15 +1,32 @@
+
 class RomanNumber:
-    def __init__(self, rom_value):
+    def __init__(self, value):
         """
         Initializes an instance of RomanNumber with the given Roman numeral string.
 
         Args:
             rom_value (str): The Roman numeral string.
         """
-        self.rom_value = rom_value
-        if not self.is_roman(rom_value):
-            print("ошибка")
-            self.rom_value = None
+        self.value = value
+        if isinstance(value, str):
+            if RomanNumber.is_roman(value):
+                self.rom_value = value
+                self.int_value = self.decimal_number()
+            else:
+                print("ошибка")
+                self.int_value = None
+                self.rom_value = None
+
+        else:
+            if isinstance(value, int):
+                if RomanNumber.is_int(value):
+                    self.int_value = value
+                    self.rom_value = self.roman_number()
+                else:
+                    print("ошибка")
+                    self.int_value = None
+                    self.rom_value = None
+
 
     def decimal_number(self):
         """
@@ -38,7 +55,42 @@ class RomanNumber:
             else:
                 total += value
             prev_value = value
+
         return total
+
+    def roman_number(self):
+        """
+        Преобразует десятичное число в римское.
+
+        Args:
+            num (int): Десятичное число.
+
+        Returns:
+            str: Римское число.
+        """
+        roman_map = {
+            1: 'I',
+            4: 'IV',
+            5: 'V',
+            9: 'IX',
+            10: 'X',
+            40: 'XL',
+            50: 'L',
+            90: 'XC',
+            100: 'C',
+            400: 'CD',
+            500: 'D',
+            900: 'CM',
+            1000: 'M'
+        }
+        copy = self.int_value
+        roman_num = ""
+        for value in sorted(roman_map.keys(), reverse=True):
+            while self.int_value >= value:
+                roman_num += roman_map[value]
+                self.int_value -= value
+        self.int_value = copy
+        return roman_num
 
     @staticmethod
     def is_roman(value):
@@ -70,8 +122,17 @@ class RomanNumber:
 
         return True
 
+    @staticmethod
+    def is_int(value):
+        if not isinstance(value, int) or value < 1 or value > 3999:
+            return False
+        return True
+
+
+
     def __repr__(self):
         return f'{self.rom_value}'
+
 
 
 

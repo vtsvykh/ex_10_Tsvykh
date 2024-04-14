@@ -24,10 +24,10 @@ class NavalBattle:
         """
         if NavalBattle.playing_field[y - 1][x - 1] == 1:
             NavalBattle.playing_field[y - 1][x - 1] = self.symbol
-            print("Попал!")
+            print("попал")
         else:
             NavalBattle.playing_field[y - 1][x - 1] = 'o'
-            print("Мимо!")
+            print("мимо")
 
     @staticmethod
     def show():
