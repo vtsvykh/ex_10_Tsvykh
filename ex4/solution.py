@@ -90,6 +90,26 @@ class RomanNumber:
 
         return True
 
+    def __add__(self, other):
+        if not isinstance(other, RomanNumber):
+            return NotImplemented
+        return RomanNumber(self.decimal_number() + other.decimal_number())
+
+    def __sub__(self, other):
+        if not isinstance(other, RomanNumber):
+            return NotImplemented
+        return RomanNumber(self.decimal_number() - other.decimal_number())
+
+    def __mul__(self, other):
+        if not isinstance(other, RomanNumber):
+            return NotImplemented
+        return RomanNumber(self.decimal_number() * other.decimal_number())
+
+    def __truediv__(self, other):
+        if not isinstance(other, RomanNumber):
+            return NotImplemented
+        return RomanNumber(self.decimal_number() // other.decimal_number())
+
     def __str__(self):
         """
         Displaying information about a class object to users.
@@ -101,3 +121,33 @@ class RomanNumber:
         Displaying information about a class object in debugging mode.
         """
         return self.__str__()
+
+a = RomanNumber('XI')
+b = RomanNumber('VII')
+c = a + b
+print(c)
+d = RomanNumber('XII')
+print(c - d)
+e = RomanNumber('XXXIV')
+f = e * a
+print(f)
+print(f / RomanNumber('II') )
+g = f / b
+print(g.rom_value)
+print(f // b)
+print(f % b)
+print(RomanNumber('II') ** RomanNumber('X'))
+a -= b
+print(a)
+b += RomanNumber('XX')
+print(b)
+b /= RomanNumber('III')
+print(b)
+b *= a
+print(b)
+b /= RomanNumber('X')
+print(b)
+e //= RomanNumber('X')
+print(e)
+e %= RomanNumber('II')
+print(e)

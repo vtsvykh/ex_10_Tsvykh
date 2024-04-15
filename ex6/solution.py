@@ -52,10 +52,6 @@ class RomanNumber:
         return total
 
     def roman_number(self):
-        """
-
-        :return:
-        """
         copy = self.int_value
         roman_num = ''
         new_dict = {
@@ -109,30 +105,36 @@ class RomanNumber:
         return True
 
     def __add__(self, other):
-        if isinstance(other, RomanNumber):
-            decimal_add = RomanNumber(self.int_value + other.int_value)
-            return decimal_add
-        else:
-            raise TypeError('ошибка')
+        if not isinstance(other, RomanNumber):
+            return NotImplemented
+        return RomanNumber(self.decimal_number() + other.decimal_number())
 
     def __sub__(self, other):
-        if isinstance(other, RomanNumber):
-            decimal_sub = RomanNumber(self.int_value - other.int_value)
-            return decimal_sub
-        else:
-            raise TypeError('ошибка')
+        if not isinstance(other, RomanNumber):
+            return NotImplemented
+        return RomanNumber(self.decimal_number() - other.decimal_number())
 
     def __mul__(self, other):
-        if isinstance(other, RomanNumber):
-            decimal_mul = RomanNumber(self.int_value * other.decimal_number())
-            return decimal_mul
+        if not isinstance(other, RomanNumber):
+            return NotImplemented
+        return RomanNumber(self.decimal_number() * other.decimal_number())
 
     def __truediv__(self, other):
-        if other.int_value == 0:
-            return 'Error'
+        if not isinstance(other, RomanNumber):
+            return NotImplemented
+        return RomanNumber(self.decimal_number() // other.decimal_number())
+
+    def __floordiv__(self, other):
         if isinstance(other, RomanNumber):
-            decimal_truediv = self.int_value / other.int_value
-            return RomanNumber(decimal_truediv)
+            return RomanNumber(self.int_value // other.int_value)
+
+    def __mod__(self, other):
+        if isinstance(other, RomanNumber):
+            return RomanNumber(self.int_value % other.int_value)
+
+    def __pow__(self, other):
+        if isinstance(other, RomanNumber):
+            return RomanNumber(self.int_value ** other.int_value)
 
     def __str__(self):
         """
@@ -145,20 +147,3 @@ class RomanNumber:
         Displaying information about a class object in debugging mode.
         """
         return self.__str__()
-
-
-a = RomanNumber('XI')
-b = RomanNumber('VII')
-c = a + b
-print(c)
-d = RomanNumber('XII')
-print(c - d)
-e = RomanNumber('XXXIV')
-f = e * a
-print(f.int_value)
-
-
-print(f / RomanNumber('II'))
-#
-# g = f / b
-# print(g.rom_value)
