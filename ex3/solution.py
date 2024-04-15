@@ -6,8 +6,9 @@ class NavalBattle:
     Class of Naval battle.
 
     Attributes:
-        playing_field (list): a list of lists denoting a 10х10 playing field
+        playing_field : a 10х10 playing field
         symbol (str): the symbol that indicates the hit of each player
+        type_ship (list): list of all ships
     """
     playing_field = None
     type_ship = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
@@ -56,46 +57,36 @@ class NavalBattle:
     @classmethod
     def new_game(cls):
         """
-        Расставляет корабли случайным образом на доске.
-
-        Args:
-            board_size (int): Размер доски (например, 10 для 10x10).
-            ship_sizes (list): Список размеров кораблей (например, [5, 4, 3, 3, 2]).
-
-        Returns:
-            list: Двумерный список, представляющий доску с кораблями.
+        Function places ships randomly on the playing field.
+        :return: list of rosters with ships deployed
         """
+
         cls.playing_field = [['~'] * 10 for _ in range(10)]
 
-        def is_valid_placement(y, x, ship_size, orientation):
+        def is_valid_placement(x, y, ship_size, orientation):
             """
-            Проверяет, что корабль может быть размещен в данной позиции.
-
-            Args:
-                x (int): Координата X.
-                y (int): Координата Y.
-                ship_size (int): Размер корабля.
-                orientation (str): Ориентация ('horizontal' или 'vertical').
-
-            Returns:
-                bool: True, если размещение корректно, иначе False.
+            Checks that the ship is correctly positioned at the specified location
+            :param x: x coordinate
+            :param y: y coordinate
+            :param ship_size: size of the ship to be deployed
+            :param orientation: orientation (vertical or horizontal)
+            :return: True - the placement is correct, otherwise False.
             """
-            for i in range(ship_size):
+            for cage in range(ship_size):
                 if orientation == 'horizontal':
-                    if y + i >= 10 or cls.playing_field[x][y + i] != '~':
+                    if y + cage >= 10 or cls.playing_field[x][y + cage] != '~':
                         return False
                 else:
-                    if x + i >= 10 or cls.playing_field[x + i][y] != '~':
+                    if x + cage >= 10 or cls.playing_field[x + cage][y] != '~':
                         return False
             return True
 
         def mark_empty_cells(x, y):
             """
-            Окружает корабль пустыми клетками.
-
-            Args:
-                x (int): Координата X.
-                y (int): Координата Y.
+            The function surrounds the ship with empty cells
+            :param x: coordinate x
+            :param y: coordinate y
+            :return: update playing field
             """
             for dx in [-1, 0, 1]:
                 for dy in [-1, 0, 1]:
@@ -116,13 +107,13 @@ class NavalBattle:
                     y = random.randint(0, 10 - 1)
 
                 if is_valid_placement(y, x, ship_size, orientation):
-                    for i in range(ship_size):
+                    for cage in range(ship_size):
                         if orientation == 'horizontal':
-                            cls.playing_field[x][y + i] = 1
-                            mark_empty_cells(x, y + i)
+                            cls.playing_field[x][y + cage] = 1
+                            mark_empty_cells(x, y + cage)
                         else:
-                            cls.playing_field[x + i][y] = 1
-                            mark_empty_cells(x + i, y)
+                            cls.playing_field[x + cage][y] = 1
+                            mark_empty_cells(x + cage, y)
                     placed = True
 
         return cls.playing_field
@@ -139,4 +130,3 @@ class NavalBattle:
         Displaying information about a class object in debugging mode.
         """
         return f'{NavalBattle.playing_field}'
-

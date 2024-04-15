@@ -1,11 +1,4 @@
 class RomanNumber:
-    """
-    Class of Roman numerals.
-
-    Attributes:
-        roman_map (dict): Roman numeral dictionary
-        rom_value (str or int): Roman numeral
-    """
     roman_map = {
         'I': 1,
         'IV': 4,
@@ -23,10 +16,6 @@ class RomanNumber:
     }
 
     def __init__(self, value):
-        """
-        The function initializes a new class object.
-        :param value (str or int): Roman numeral
-        """
         self.value = value
         if isinstance(value, str):
             if RomanNumber.is_roman(value):
@@ -48,11 +37,6 @@ class RomanNumber:
                     self.rom_value = None
 
     def decimal_number(self):
-        """
-        Returns the decimal equivalent of the Roman number.
-        :return: decimal equivalent of the Roman number
-        """
-
         if self.rom_value is None:
             return None
 
@@ -69,8 +53,8 @@ class RomanNumber:
 
     def roman_number(self):
         """
-        Returns the equivalent of the Roman number in decimal form.
-        :return: equivalent of the Roman number in decimal form
+
+        :return:
         """
         copy = self.int_value
         roman_num = ''
@@ -86,11 +70,6 @@ class RomanNumber:
 
     @staticmethod
     def is_roman(value):
-        """
-        Checks if the Roman numeral entry is correct.
-        :param value (str): Roman numeral
-        :return: True if the number is Roman otherwise False.
-        """
 
         if value in RomanNumber.roman_map:
             return True
@@ -125,14 +104,35 @@ class RomanNumber:
 
     @staticmethod
     def is_int(value):
-        """
-        Checks whether it is possible to convert a decimal number into Roman form.
-        :param value (int): Integer value
-        :return: True if you can or False, you can't.
-        """
         if not isinstance(value, int) or value < 1 or value > 3999:
             return False
         return True
+
+    def __add__(self, other):
+        if isinstance(other, RomanNumber):
+            decimal_add = RomanNumber(self.int_value + other.int_value)
+            return decimal_add
+        else:
+            raise TypeError('ошибка')
+
+    def __sub__(self, other):
+        if isinstance(other, RomanNumber):
+            decimal_sub = RomanNumber(self.int_value - other.int_value)
+            return decimal_sub
+        else:
+            raise TypeError('ошибка')
+
+    def __mul__(self, other):
+        if isinstance(other, RomanNumber):
+            decimal_mul = RomanNumber(self.int_value * other.decimal_number())
+            return decimal_mul
+
+    def __truediv__(self, other):
+        if other.int_value == 0:
+            return 'Error'
+        if isinstance(other, RomanNumber):
+            decimal_truediv = self.int_value / other.int_value
+            return RomanNumber(decimal_truediv)
 
     def __str__(self):
         """
@@ -145,3 +145,20 @@ class RomanNumber:
         Displaying information about a class object in debugging mode.
         """
         return self.__str__()
+
+
+a = RomanNumber('XI')
+b = RomanNumber('VII')
+c = a + b
+print(c)
+d = RomanNumber('XII')
+print(c - d)
+e = RomanNumber('XXXIV')
+f = e * a
+print(f.int_value)
+
+
+print(f / RomanNumber('II'))
+#
+# g = f / b
+# print(g.rom_value)
